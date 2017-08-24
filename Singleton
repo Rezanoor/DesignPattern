@@ -1,0 +1,23 @@
+using System;
+
+public class Singleton
+{
+    private static volatile Singleton _instance = null;
+
+    public static Singleton instance()
+    {
+        if (_instance == null)
+        {
+            lock (typeof(Singleton))
+            {
+                _instance = new Singleton();
+            }   
+        }
+        return _instance;
+    }
+
+    public void print(String output)
+    {
+        Console.WriteLine(output);
+    }
+}
