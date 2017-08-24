@@ -1,0 +1,59 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace designPatterns
+{
+    public abstract class  Factory
+    {
+
+        public abstract void getProductName();
+
+        public abstract Factory getInstance();
+        
+    }
+
+    
+
+    class productA : Factory
+    {
+
+        public override Factory getInstance()
+        {
+            return new productA();
+        } 
+
+        public override void getProductName()
+        {
+            Console.WriteLine("Product A");
+        }
+    }
+
+    class productB : Factory
+    {
+        public override Factory getInstance()
+        {
+            return new productB();
+        } 
+
+        public override void getProductName()
+        {
+            Console.WriteLine("Product B");
+        }
+    }
+
+    class productC : Factory
+    {
+        public override Factory getInstance()
+        {
+            return new productC();
+        } 
+
+        public override void getProductName()
+        {
+            Console.WriteLine("Product C");
+        }
+    }
+
+}
