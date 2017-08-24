@@ -1,0 +1,87 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace designPatterns
+{
+    interface Shape
+    {
+        void draw();
+    }
+
+    class Circle : Shape
+    {
+        public void draw()
+        {
+            Console.WriteLine("Draw Circle");
+        }
+    }
+
+    class Rectangle : Shape
+    {
+        public  void draw()
+        {
+            Console.WriteLine("Draw Rectangle");
+        }
+    }
+
+    class Decorator : Shape
+    {
+        private Shape instanceShap;
+
+        public Decorator(Shape instanceShape)
+        {
+            this.instanceShap = instanceShape;
+        }
+
+        public void draw()
+        {
+            instanceShap.draw();
+        }
+    }
+
+    class BorderedShapeDecorator : Decorator
+    {
+        private Shape borderedDecoratedShape;
+
+        public BorderedShapeDecorator(Shape borderedDecoratedShape)
+            : base(borderedDecoratedShape) 
+        {
+            this.borderedDecoratedShape = borderedDecoratedShape;
+        }
+
+        public override void draw() 
+        {
+            borderedDecoratedShape.draw();
+            addBorder();
+        }
+
+        private void addBorder()
+        {
+            Console.WriteLine("Add border");
+        }
+    }
+
+    class RedShapeDecorator : Decorator
+    {
+        private Shape redDecoratedShape;
+
+        public RedShapeDecorator(Shape redDecoratedShape)
+            : base(redDecoratedShape)
+        {
+            this.redDecoratedShape = redDecoratedShape;
+        }
+
+        public override void draw()
+        {
+            redDecoratedShape.draw();
+            colourRed();
+        }
+
+        private void colourRed()
+        {
+            Console.WriteLine("Red Colour");
+        }
+    }
+}
